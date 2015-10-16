@@ -46,7 +46,7 @@ static const CGFloat kLabelsFontSize = 12.0f;
     _step = 0.1f;
     
     //addintional default string for min and max
-    self.minAddtionalCharacter = @"< ";
+    self.minAdditionalCharacter = @"< ";
     self.maxAdditionalCharacter = @"+";
 
     //draw the slider line
@@ -180,7 +180,7 @@ static const CGFloat kLabelsFontSize = 12.0f;
     
     if ( addMinAndMaxAdditionalCharacters ) {
         if (self.selectedMinimum == self.minValue) {
-            self.minLabel.string = [self.minAddtionalCharacter stringByAppendingString:[formatter stringFromNumber:@(self.selectedMinimum)]];
+            self.minLabel.string = [self.minAdditionalCharacter stringByAppendingString:[formatter stringFromNumber:@(self.selectedMinimum)]];
         } else {
             self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
         }
