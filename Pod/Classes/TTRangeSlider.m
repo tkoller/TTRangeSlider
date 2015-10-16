@@ -171,9 +171,19 @@ static const CGFloat kLabelsFontSize = 12.0f;
     }
 
     NSNumberFormatter *formatter = (self.numberFormatterOverride != nil) ? self.numberFormatterOverride : self.decimalNumberFormatter;
-
-    self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
-    self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
+    
+    if (self.selectedMinimum == self.minValue) {
+        self.minLabel.string = [@"<" stringByAppendingString:[formatter stringFromNumber:@(self.selectedMinimum)]];
+    } else {
+       self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
+    }
+    
+    if (self.selectedMaximum == self.maxValue) {
+        self.maxLabel.string = [[formatter stringFromNumber:@(self.selectedMaximum)] stringByAppendingString:@"<"];
+    } else {
+        self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
+    }
+    
 }
 
 #pragma mark - Set Positions
