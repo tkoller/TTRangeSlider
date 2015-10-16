@@ -72,4 +72,22 @@ IB_DESIGNABLE
  */
 @property (nonatomic, assign) IBInspectable float step;
 
+/**
+ * Use this flag to add additional characters if selected min or max value are equal to min or max value
+ * (note: standard value false)
+ */
+@property (nonatomic, assign) BOOL addMinAndMaxAdditionalCharacters;
+
+/**
+ * Set this value if you want to show additional characters to minValue
+ * (note: standard value is < )
+ */
+@property (nonatomic, assign) NSString *minAdditionalCharacter;
+
+/**
+ * Set this value if you want to show additional characters to maxValue
+ * (note: standard value is + )
+ */
+@property (nonatomic, assign) NSString *maxAdditionalCharacter;
+
 @end

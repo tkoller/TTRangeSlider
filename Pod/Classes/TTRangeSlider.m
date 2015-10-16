@@ -36,12 +36,18 @@ static const CGFloat kLabelsFontSize = 12.0f;
     _selectedMinimum = 10;
     _maxValue = 100;
     _selectedMaximum  = 90;
+    
+    _addMinAndMaxAdditionalCharacters = NO;
 
     _minDistance = -1;
     _maxDistance = -1;
 
     _enableStep = NO;
     _step = 0.1f;
+    
+    //addintional default string for min and max
+    self.minAddtionalCharacter = @"< ";
+    self.maxAdditionalCharacter = @"+";
 
     //draw the slider line
     self.sliderLine = [CALayer layer];
@@ -172,18 +178,22 @@ static const CGFloat kLabelsFontSize = 12.0f;
 
     NSNumberFormatter *formatter = (self.numberFormatterOverride != nil) ? self.numberFormatterOverride : self.decimalNumberFormatter;
     
-    if (self.selectedMinimum == self.minValue) {
-        self.minLabel.string = [@"< " stringByAppendingString:[formatter stringFromNumber:@(self.selectedMinimum)]];
+    if ( addMinAndMaxAdditionalCharacters ) {
+        if (self.selectedMinimum == self.minValue) {
+            self.minLabel.string = [self.minAddtionalCharacter stringByAppendingString:[formatter stringFromNumber:@(self.selectedMinimum)]];
+        } else {
+            self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
+        }
+        
+        if (self.selectedMaximum == self.maxValue) {
+            self.maxLabel.string = [[formatter stringFromNumber:@(self.selectedMaximum)] stringByAppendingString:self.maxAdditionalCharacter];
+        } else {
+            self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
+        }
     } else {
-       self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
-    }
-    
-    if (self.selectedMaximum == self.maxValue) {
-        self.maxLabel.string = [[formatter stringFromNumber:@(self.selectedMaximum)] stringByAppendingString:@"+"];
-    } else {
+        self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
         self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
     }
-    
 }
 
 #pragma mark - Set Positions
