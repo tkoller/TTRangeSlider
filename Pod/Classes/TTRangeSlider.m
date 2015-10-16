@@ -178,7 +178,7 @@ static const CGFloat kLabelsFontSize = 12.0f;
 
     NSNumberFormatter *formatter = (self.numberFormatterOverride != nil) ? self.numberFormatterOverride : self.decimalNumberFormatter;
     
-    if ( addMinAndMaxAdditionalCharacters ) {
+    if ( _addMinAndMaxAdditionalCharacters ) {
         if (self.selectedMinimum == self.minValue) {
             self.minLabel.string = [self.minAdditionalCharacter stringByAppendingString:[formatter stringFromNumber:@(self.selectedMinimum)]];
         } else {
