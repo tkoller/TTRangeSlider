@@ -178,7 +178,7 @@ static const CGFloat kLabelsFontSize = 12.0f;
 
     NSNumberFormatter *formatter = (self.numberFormatterOverride != nil) ? self.numberFormatterOverride : self.decimalNumberFormatter;
     
-    if ( _addMinAndMaxAdditionalCharacters ) {
+    if ( _addMinAndMaxAdditionalCharacters && (!_disableRange) ) {
         if (self.selectedMinimum == self.minValue) {
             self.minLabel.string = [self.minAdditionalCharacter stringByAppendingString:[formatter stringFromNumber:@(self.selectedMinimum)]];
         } else {
@@ -189,6 +189,14 @@ static const CGFloat kLabelsFontSize = 12.0f;
             self.maxLabel.string = [[formatter stringFromNumber:@(self.selectedMaximum)] stringByAppendingString:self.maxAdditionalCharacter];
         } else {
             self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
+        }
+    } else if ( _addMinAndMaxAdditionalCharacters && _disableRange ) {
+        if (self.selectedMaximum == self.maxValue) {
+            self.maxLabel.string = [[formatter stringFromNumber:@(self.selectedMaximum)] stringByAppendingString:self.maxAdditionalCharacter];
+        } else if ( self.selectedMaximum == self.minValue ){
+            self.maxLabel.string = [self.minAdditionalCharacter stringByAppendingString:[formatter stringFromNumber:@(self.selectedMaximum)]];
+        } else {
+             self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
         }
     } else {
         self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
