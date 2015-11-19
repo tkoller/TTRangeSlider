@@ -204,10 +204,10 @@ static const CGFloat kLabelsFontSize = 12.0f;
     }
     
     if ( _addCmAndInches ) {
-        NSString *minToAppend = [@"cm/" stringByAppendingString:calculateInch(self.selectedMinimum)];
+        NSString *minToAppend = [@"cm/" stringByAppendingString:[self calculateInch:self.selectedMinimum]];
         
         if ( ! _disableRange ) {
-            NSString *maxToAppend = [@"cm/" stringByAppendingString:calculateInch(self.selectedMaximum)];
+            NSString *maxToAppend = [@"cm/" stringByAppendingString:[self calculateInch:self.selectedMaximum]];
             
             self.maxLabel.string = [self.maxLabel.string stringByAppendingString:maxToAppend];
         }
