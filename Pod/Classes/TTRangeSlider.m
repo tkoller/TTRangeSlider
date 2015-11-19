@@ -196,12 +196,40 @@ static const CGFloat kLabelsFontSize = 12.0f;
         } else if ( self.selectedMaximum == self.minValue ){
             self.maxLabel.string = [self.minAdditionalCharacter stringByAppendingString:[formatter stringFromNumber:@(self.selectedMaximum)]];
         } else {
-             self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
+            self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
         }
     } else {
         self.minLabel.string = [formatter stringFromNumber:@(self.selectedMinimum)];
         self.maxLabel.string = [formatter stringFromNumber:@(self.selectedMaximum)];
     }
+    
+    if ( _addCmAndInches ) {
+        NSString *minToAppend = [@"cm/" stringByAppendingString:calculateInch(self.selectedMinimum)];
+        
+        if ( ! _disableRange ) {
+            NSString *maxToAppend = [@"cm/" stringByAppendingString:calculateInch(self.selectedaximum)];
+            
+            self.maxLabel.string = [self.maxLabel.string stringByAppendingString:maxToAppend];
+        }
+        
+        self.minLabel.string = [self.minLabel.string stringByAppendingString:minToAppend];
+        
+    }
+}
+
+- (NSString)calculateInch:(float) value {
+    NSString *result = nil
+    
+    float number = value / 2.54;
+    
+    if (number > 12.0) {
+        result = [NSString stringWithFormat:@"%i’%i”", (int)floor(number / 12.0), (int)number % 12];
+        
+    } else {
+        result = [NSString stringWithFormat:@"0’%i”", (int)round(number)];
+    }
+    
+    return result
 }
 
 #pragma mark - Set Positions

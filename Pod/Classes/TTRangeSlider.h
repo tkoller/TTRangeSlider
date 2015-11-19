@@ -79,6 +79,12 @@ IB_DESIGNABLE
 @property (nonatomic, assign) BOOL addMinAndMaxAdditionalCharacters;
 
 /**
+ * Use this flag to add additional cm/Inch to size
+ * (note: standard value false)
+ */
+@property (nonatomic, assign) BOOL addCmAndInches;
+
+/**
  * Set this value if you want to show additional characters to minValue
  * (note: standard value is < )
  */
