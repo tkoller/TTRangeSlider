@@ -207,7 +207,7 @@ static const CGFloat kLabelsFontSize = 12.0f;
         NSString *minToAppend = [@"cm/" stringByAppendingString:calculateInch(self.selectedMinimum)];
         
         if ( ! _disableRange ) {
-            NSString *maxToAppend = [@"cm/" stringByAppendingString:calculateInch(self.selectedaximum)];
+            NSString *maxToAppend = [@"cm/" stringByAppendingString:calculateInch(self.selectedMaximum)];
             
             self.maxLabel.string = [self.maxLabel.string stringByAppendingString:maxToAppend];
         }
@@ -217,8 +217,8 @@ static const CGFloat kLabelsFontSize = 12.0f;
     }
 }
 
-- (NSString)calculateInch:(float) value {
-    NSString *result = nil
+- (NSString *)calculateInch:(float) value {
+    NSString *result = nil;
     
     float number = value / 2.54;
     
@@ -229,7 +229,7 @@ static const CGFloat kLabelsFontSize = 12.0f;
         result = [NSString stringWithFormat:@"0’%i”", (int)round(number)];
     }
     
-    return result
+    return result;
 }
 
 #pragma mark - Set Positions
